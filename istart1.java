@@ -1,0 +1,1 @@
+import java.math.*;import java.util.*;class m{public static void main(String[] args) {Scanner sc=new Scanner(System.in);BigInteger b = sc.nextBigInteger();boolean c = b.isProbablePrime(1);if(c){System.out.print("1");}else{System.out.println("0");  }}}
