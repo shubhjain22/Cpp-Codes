@@ -36,6 +36,8 @@ auto comp = [](edge& e1,edge& e2){
 };
 vector<edge> E;
 int main(){
+
+    
     
     cin >> n >> m;
     for(int i=0;i<m;i++){
