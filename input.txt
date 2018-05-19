@@ -1,12 +1,2 @@
-2
-5
-ab
-aa
-aa
-bcd
-ab
-4
-tom
-jerry 
-jerry 
-tom
+1
+231--9-
