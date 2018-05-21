@@ -3,39 +3,41 @@
 #define eb emplace_back
 #define MOD 1000000007
 using namespace std;
-
+int* stockSpan(int *price,int size){
+    stack<int> s;
+    int *output = new int[size];
+    s.push(0);
+    output[0]=1;
+    for(int i=1;i<size;i++){
+        while(!s.empty() && price[s.top()]<price[i]){
+            s.pop();
+        }
+        if(s.empty()) output[i] = i+1;
+        else{
+            output[i] = i-s.top();
+        }
+        s.push(i);
+    }
+    return output;
+}
 int main(){
     #ifndef ONLINE_JUDGE
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
     #endif
-    int t;cin >> t;
+    std::ios::sync_with_stdio(0);
+    int t;cin>>t;
     while(t--){
-        string s;cin >> s;
-        stack<int> s1;
-        int64_t buffer = MOD;
-        for(auto i : s){
-            if(i!='*' && i!='+' && i!='-' && i!='/'){
-                s1.push(i-'0');
-            }
-            else{
-                if(buffer==MOD){
-                    int a=s1.top();s1.pop();
-                    int b=s1.top();s1.pop();
-                    if(i=='*') buffer = a*b;
-                    else if(i=='+') buffer = a+b;
-                    else if(i=='-') buffer = b-a;
-                    else buffer = b/a;
-                }
-                else{
-                    int a = s1.top();s1.pop();
-                    if(i=='*') buffer = buffer*a;
-                    else if(i=='+') buffer = buffer+a;
-                    else if(i=='-') buffer = buffer-a;
-                    else buffer = buffer/a;
-                }
-            }
+        int64_t n;
+        cin >> n;
+        int arr[n];
+        for(int i=0;i<n;i++){
+            cin >> arr[i];
         }
-        cout << buffer << "\n";
+
+        int *output = stockSpan(arr,n);
+        for(int i=0;i<n;i++){
+            cout << output[i] << " ";
+        }
     }
 }
